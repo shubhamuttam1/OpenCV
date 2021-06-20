@@ -50,17 +50,17 @@ def main():
     previous_time = 0
     current_time = 0
 
-    cap = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(0)
     detector = hand_detector()
 
     while True:
-        success, frame = cap.read()
+        success, frame = cam.read()
         frame = detector.find_hands(frame)
         lm_list = detector.find_position(frame)
         if len(lm_list) != 0:
             print(lm_list[4])
             cv2.circle(frame, (lm_list[4][1], lm_list[4][2]),
-                   radius=5, color=(0, 0, 255), cv2.FILLED)
+                   radius=5, color=(0, 0, 255))
 # image = cv2.circle(image, (x,y), radius=0, color=(0, 0, 255), thickness=-1)
         current_time = time.time()
         fps = 1 / (current_time - previous_time)
